@@ -1,0 +1,16 @@
+{
+    "database": {
+      "host": "localhost",
+      "database": "cavedivingnavigation",
+      "user": "root",
+      "password": "root"
+    },
+    "kafka": {
+      "bootstrap.servers": "localhost:9092",
+      "topic": "sonar_data"
+    },
+    "app_settings": {
+      "poll_interval_seconds": 1
+    }
+  }
+  

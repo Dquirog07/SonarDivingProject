@@ -37,3 +37,14 @@ CREATE TABLE IF NOT EXISTS cookies (
     material TEXT,
     FOREIGN KEY (dive_id) REFERENCES dives(dive_id)
 );
+
+CREATE TABLE IF NOT EXISTS sonar_readings (
+    reading_id INT AUTO_INCREMENT PRIMARY KEY,
+    dive_id INT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    depth DECIMAL(5, 2) NOT NULL,  
+    sound_profile BLOB,            
+    FOREIGN KEY (dive_id) REFERENCES dives(dive_id),
+    INDEX (timestamp)             
+);
+

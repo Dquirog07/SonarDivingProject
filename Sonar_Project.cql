@@ -3,28 +3,19 @@ CREATE KEYSPACE cave_diving WITH replication = {
     'datacenter1': 3
 };
 
-CREATE TABLE cave_diving.dives (
-    dive_id UUID PRIMARY KEY,
-    diver_id UUID,
-    start_timestamp TIMESTAMP,
-    end_timestamp TIMESTAMP,
-    start_location TEXT,
-    end_location TEXT
+CREATE TABLE IF NOT EXISTS cave_diving.dive_summary (
+    dive_id BIGINT,
+    diver_id BIGINT,
+    start_time TIMESTAMP,
+    end_time TIMESTAMP,
+    summary_data TEXT,
+    PRIMARY KEY (diver_id, dive_id)
 );
 
-CREATE TABLE cave_diving.events (
-    dive_id UUID,
-    event_timestamp TIMESTAMP,
-    event_type TEXT,
-    location TEXT,
-    details TEXT,
-    PRIMARY KEY (dive_id, event_timestamp)
-) WITH CLUSTERING ORDER BY (event_timestamp DESC);
-
-CREATE TABLE cave_diving.cookies (
-    dive_id UUID,
-    cookie_id UUID PRIMARY KEY,
-    placement_timestamp TIMESTAMP,
-    location TEXT,
-    material TEXT
+CREATE TABLE IF NOT EXISTS cave_diving.sonar_readings (
+    dive_id BIGINT,
+    diver_id BIGINT,
+    timestamp TIMESTAMP,
+    sonar_data BLOB,
+    PRIMARY KEY ((diver_id, dive_id), TIMESTAMP)
 );

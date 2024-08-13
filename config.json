@@ -1,16 +1,25 @@
 {
-    "database": {
-      "host": "localhost",
-      "database": "cavedivingnavigation",
-      "user": "root",
-      "password": "root"
+  "database": {
+    "host": "localhost",
+    "database": "cavedivingnavigation",
+    "user": "root",
+    "password": "root"
+  },
+  "kafka": {
+    "bootstrap.servers": "localhost:9093",
+    "producer": {
+      "topics": "sonar_data"
     },
-    "kafka": {
-      "bootstrap.servers": "localhost:9092",
-      "topic": "sonar_data"
-    },
-    "app_settings": {
-      "poll_interval_seconds": 1
+    "consumer": {
+      "group.id": "cd_group",
+      "auto.offset.reset": "earliest"
     }
+  },
+  "app_settings": {
+    "poll_interval_seconds": 1
+  },
+  "cassandra": {
+    "hosts": ["127.0.0.1"],
+    "port": 9042
   }
-  
+}
